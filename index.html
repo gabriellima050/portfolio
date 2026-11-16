@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gabriel Lima Procópio · Portfólio</title>
+<meta name="description" content="Gabriel Lima Procópio · Revenue Operations &amp; Data Specialist. Currículo interativo com projetos de dados, automação e IA que você pode testar.">
+<meta property="og:title" content="Gabriel Lima Procópio · Portfólio">
+<meta property="og:description" content="RevOps, dados, automação e IA. Projetos com demos interativas.">
+<meta property="og:image" content="assets/img/foto.jpg">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0d1017">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/img/foto.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="logo" href="#topo"><img src="assets/img/foto.jpg" alt=""> gabriel.procopio</a>
+    <div class="navlinks">
+      <a href="#projetos">Projetos</a>
+      <a href="#trajetoria">Trajetória</a>
+      <a href="#stack">Stack</a>
+      <a href="#certificados">Certificados</a>
+      <a href="#contato">Contato</a>
+    </div>
+  </div>
+</nav>
+
+<main class="wrap" id="topo">
+  <header class="hero">
+    <div>
+      <div class="who">
+        <div class="photo"><img src="assets/img/foto.jpg" alt="Foto de Gabriel Lima Procópio"><span class="live" title="Aberto a conversas"></span></div>
+        <div class="who-meta">
+          <span class="eyebrow">RevOps &amp; Dados</span>
+          <div class="facts"><span class="fact">São Paulo, SP</span><span class="fact">Octadesk</span><span class="fact">10+ anos com dados</span></div>
+        </div>
+      </div>
+      <h1>Gabriel Lima <span>Procópio</span></h1>
+      <p class="role">Revenue Operations &amp; Data Specialist · CS Ops · GTM Engineer</p>
+      <p class="bio">Transformo dados em decisões onde dados, operação e receita se encontram: retenção de clientes, inteligência comercial e automação de processos. Fora do trabalho, construo produtos com IA para aprender fazendo.</p>
+      <div class="cta">
+        <a class="btn primary" href="#projetos">Ver projetos interativos</a>
+        <a class="btn" href="https://www.linkedin.com/in/gabriel-lima-procopio/">LinkedIn</a>
+        <a class="btn" href="https://github.com/gabriellima050">GitHub</a>
+      </div>
+    </div>
+    <div class="console" aria-label="Console de consulta interativo">
+      <div class="console-top">
+        <div class="lights" aria-hidden="true"><i></i><i></i><i></i></div>
+        <div class="qtabs" role="tablist" id="qtabs"></div>
+      </div>
+      <div class="editor" id="editor" aria-live="polite"></div>
+      <div class="runbar"><span id="rstatus">pronto</span><button class="run" id="runBtn">▶ Executar</button></div>
+      <div class="result" id="result"></div>
+    </div>
+  </header>
+
+  <div class="kpis" aria-label="Indicadores de impacto">
+    <div class="kpi"><b>10+</b><span>anos com dados, BI e operação</span></div>
+    <div class="kpi"><b>~50%</b><span>de redução de churn com análises preditivas</span></div>
+    <div class="kpi"><b>12h</b><span>por mês economizadas com relatórios automatizados</span></div>
+    <div class="kpi"><b>7x</b><span>destaque por valores da empresa (2022–2024)</span></div>
+    <div class="kpi"><b>50+</b><span>usuários ativos no MVP do TáVindo.AI em 3 meses</span></div>
+  </div>
+
+  <section id="projetos">
+    <div class="sec-head">
+      <div>
+        <span class="tag">01 · Portfólio</span>
+        <h2>Projetos que você pode testar</h2>
+        <p>Cada card abre uma demo que reproduz a interface e a lógica do projeto original, com dados fictícios. Nos projetos profissionais, empresa e regra de negócio ficam de fora.</p>
+      </div>
+      <div class="chips" id="filters" role="group" aria-label="Filtrar projetos"></div>
+    </div>
+    <div class="subhead" id="sh-priv"><h3>Profissionais e produto</h3><span>repositórios privados · anonimizados</span></div>
+    <div class="pgrid" id="pgrid-priv"></div>
+    <div class="subhead" id="sh-pub"><h3>Open source</h3><span>código aberto no GitHub</span></div>
+    <div class="pgrid" id="pgrid-pub"></div>
+  </section>
+
+  <section id="trajetoria">
+    <div class="sec-head">
+      <div>
+        <span class="tag">02 · Trajetória</span>
+        <h2>Da cobrança ao RevOps</h2>
+        <p>Treze anos em barras. Clique em uma para ver o que foi feito em cada ciclo.</p>
+      </div>
+    </div>
+    <div class="gantt"><div class="gin" id="gantt"></div></div>
+    <div class="legend">
+      <span><i style="background:var(--ok)"></i>Atual</span>
+      <span><i style="background:var(--data)"></i>Experiência</span>
+      <span><i style="background:var(--accent)"></i>Projeto próprio</span>
+      <span><i style="background:var(--muted)"></i>Formação</span>
+    </div>
+    <div class="gdetail" id="gdetail" aria-live="polite"></div>
+  </section>
+
+  <section id="stack">
+    <div class="sec-head">
+      <div>
+        <span class="tag">03 · Stack</span>
+        <h2>Ferramentas do dia a dia</h2>
+        <p>Clique em uma ferramenta para destacar os projetos que a usam.</p>
+      </div>
+      <button class="dbtn ghost" id="clearSkill" hidden>Limpar destaque</button>
+    </div>
+    <div class="stack" id="stackGrid"></div>
+  </section>
+
+  <section id="certificados">
+    <div class="sec-head">
+      <div>
+        <span class="tag">04 · Aprendizado contínuo</span>
+        <h2>Certificados e recomendações</h2>
+      </div>
+    </div>
+    <div class="two">
+      <div class="certs" id="certs"></div>
+      <div>
+        <div class="rec"><q>Combina inteligência, curiosidade e uma vontade genuína de fazer diferente.</q><span>Luisa Tabacchi · recomendação no LinkedIn</span></div>
+        <div class="rec"><q>Essencial para identificar necessidades ocultas e cruzar dados relevantes.</q><span>Angélica Oliveira · recomendação no LinkedIn</span></div>
+        <p class="hint">5 recomendações no total, no perfil do LinkedIn.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer id="contato">
+  <div class="wrap">
+    <div class="who">
+      <div class="photo" style="width:72px;height:72px"><img src="assets/img/foto.jpg" alt=""></div>
+      <div>
+        <span class="tag">05 · Contato</span>
+        <h2>Vamos conversar sobre dados?</h2>
+        <p class="muted" style="margin:4px 0 0">O caminho mais rápido é uma mensagem no LinkedIn.</p>
+      </div>
+    </div>
+    <div class="cta">
+      <a class="btn primary" href="https://www.linkedin.com/in/gabriel-lima-procopio/">linkedin.com/in/gabriel-lima-procopio</a>
+      <a class="btn" href="https://github.com/gabriellima050">github.com/gabriellima050</a>
+    </div>
+  </div>
+</footer>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mtitle">
+  <div class="mbox">
+    <div class="mhead">
+      <div>
+        <div class="cat" id="mcat"></div>
+        <h3 id="mtitle"></h3>
+        <p id="msub"></p>
+      </div>
+      <button class="close" id="mclose" aria-label="Fechar">✕</button>
+    </div>
+    <div class="mbody">
+      <div class="mdemo">
+        <div class="demo-label"><span>● Demo interativa</span><small id="mhint"></small></div>
+        <div id="mdemo"></div>
+      </div>
+      <aside class="minfo" id="minfo"></aside>
+    </div>
+  </div>
+</div>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/demos.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
