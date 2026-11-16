@@ -376,6 +376,30 @@ footer h2{font-size:clamp(28px,4vw,44px);font-weight:800}
 .mini .rec{background:#d4edda;color:#155724;border-radius:5px;padding:3px 7px;font-size:10.5px}
 .mini.tm{background:#0a0c12;border:1px solid var(--line);border-radius:8px;padding:9px 11px;font-family:var(--mono);font-size:10.5px;color:#c8d0e0;display:flex;flex-direction:column;gap:3px}
 .mini.tm .p{color:var(--ok)}.mini.tm .m{color:var(--muted)}
+/* trajetória detalhada */
+.gdetail{grid-template-columns:260px 1fr;align-items:start}
+.gdetail .gh{grid-row:span 2}
+.cargos{list-style:none;margin:0;padding:0 0 0 14px;border-left:2px solid var(--line);display:flex;flex-direction:column;gap:10px}
+.cargos li{position:relative}
+.cargos li::before{content:"";position:absolute;left:-20px;top:6px;width:10px;height:10px;border-radius:50%;background:var(--panel);border:2px solid var(--accent)}
+.cargos b{display:block;font-size:14px;line-height:1.3}
+.cargos span{font-family:var(--mono);font-size:11.5px;color:var(--muted)}
+.gcols{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+@media (max-width:900px){.gcols{grid-template-columns:1fr}.gdetail .gh{grid-row:auto}}
+.gdetail h4{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:0 0 8px;font-weight:600}
+.gdetail h4 small{text-transform:none;letter-spacing:0;font-weight:400;margin-left:6px}
+.gdetail ul{margin:0;padding-left:18px;font-size:14.5px}
+.gdetail ul.ent li::marker{color:var(--ok)}
+.gposts{border-top:1px solid var(--line);padding-top:16px}
+.plist{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}
+.post{display:flex;flex-direction:column;gap:5px;background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:12px 14px;text-decoration:none;color:var(--text);transition:border-color .2s,transform .2s}
+.post:hover{border-color:#0a66c2;transform:translateY(-2px)}
+.post .pd{font-family:var(--mono);font-size:11px;color:var(--muted)}
+.post b{font-size:14.5px;line-height:1.3}
+.post span{font-size:13px;color:var(--muted)}
+.post .pl{margin-top:auto;padding-top:4px;color:#5aa2ff;font-size:12.5px}
+.grow .lbl .pc{display:inline-flex;align-items:center;justify-content:center;min-width:18px;height:18px;padding:0 5px;border-radius:999px;background:#0a66c2;color:#fff;font-size:10.5px;font-weight:600;vertical-align:1px;margin-left:4px}
+@media (max-width:900px){.gdetail{grid-template-columns:1fr}.plist{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -451,7 +475,7 @@ footer h2{font-size:clamp(28px,4vw,44px);font-weight:800}
       <div>
         <span class="tag">02 · Trajetória</span>
         <h2>Da cobrança ao RevOps</h2>
-        <p>Treze anos em barras. Clique em uma para ver o que foi feito em cada ciclo.</p>
+        <p>Treze anos em barras. Clique em uma para ver os cargos, as funções, as entregas e o que publiquei sobre cada fase. O número azul indica quantos posts do LinkedIn estão ligados ao período.</p>
       </div>
     </div>
     <div class="gantt"><div class="gin" id="gantt"></div></div>
@@ -613,18 +637,78 @@ SITE.stack={
  'CRM & Operação':['HubSpot','WhatsApp API','Kubernetes','MongoDB']
 };
 
-/* Trajetória (s/e = ano decimal: 2025.58 ≈ ago/2025). cls: now | side | edu */
+/* Trajetória
+   s/e = ano decimal (2025.58 ≈ ago/2025). e: null = emprego atual.
+   cls: now | side | edu
+   cargos: [{c:'cargo', p:'período'}]
+   funcoes: o que fazia no dia a dia · entregas: resultados e projetos
+   posts: publicações do LinkedIn ligadas ao período (o link é montado com o id)
+          {d:'aaaa-mm-dd', id:'id da publicação', t:'título', s:'resumo curto'} */
 SITE.trajetoria=[
- {id:'octa',org:'Octadesk',role:'Analista de RevOps & CSOps Sênior',s:2026.33,e:null,cls:'now',period:'mai/2026 – atual',loc:'São Paulo',pts:['Revenue Operations e CS Ops para os times comercial e de Customer Success','Gestão do funil com alertas em tempo real, unindo CRM e plataforma de atendimento','Análises de uso da plataforma, churn e saúde da carteira']},
- {id:'jera',org:'Jera Capital',role:'Analista de Dados Sênior · RevOps, Automação e Marketing',s:2025.58,e:2026.33,period:'ago/2025 – mai/2026 · 10 meses',loc:'São Paulo · Híbrido',pts:['Consultas SQL no Databricks e dashboards na HEX para inteligência comercial','Apresentações executivas para a diretoria','Gestão do funil no HubSpot, boas práticas de CRM e cadência comercial','Portal interno de dashboards com permissão por usuário, cadastro de leads sem duplicidade e radar de notícias de prospecção','Automações de funil com n8n']},
- {id:'tv',org:'TáVindo.AI',role:'Founder · projeto próprio',s:2025,e:2025.95,cls:'side',period:'jan/2025 – dez/2025',loc:'Remoto',pts:['Agente no WhatsApp com informações em tempo real do transporte público de SP','Orquestração com n8n, integrações com APIs e uso de LLMs para entender pedidos','50+ usuários ativos e 300 buscas em 3 meses de MVP']},
- {id:'omie',org:'Omie',role:'Especialista em Dados · RevOps & CSOps',s:2021.67,e:2025.5,period:'set/2021 – jul/2025 · ~4 anos',loc:'São Paulo · Híbrido',pts:['Redução de ~50% no churn com estratégias baseadas em análises preditivas','Criação do Health Score para monitorar a saúde do cliente em tempo real','Estudos de First Value, adoção, usabilidade, precificação e correlação com churn','Antes, em Serviços Bancários: dashboards do zero e +12 h/mês economizadas com automação','7x destaque por valores (2022–2024), Option Holder e programa Acelera Líderes']},
- {id:'neo',org:'Neobpo',role:'Analista de BI e MIS Sênior · Planejamento Sênior',s:2019.42,e:2021.67,period:'jun/2019 – ago/2021 · 2 anos 3 meses',loc:'São Paulo',pts:['Indicadores e KPIs em Power BI para operações de call center','Bases em SQL Server e relatórios em Excel','Planejamento para conta do setor bancário com rotinas em SAS']},
- {id:'vik',org:'Vikstar Contact Center',role:'Analista de Indicadores B2B · Customer Success',s:2017.67,e:2019.42,period:'set/2017 – jun/2019 · 1 ano 10 meses',loc:'São Paulo',pts:['Indicadores de CS para operação B2B de telecom','Cruzamento de bases em SQL, Power BI e análises de satisfação do cliente']},
- {id:'dnr',org:'Grupo DNR',role:'Analista de MIS Pleno',s:2016.67,e:2017.67,period:'set/2016 – ago/2017',loc:'São Paulo',pts:['Relatórios via SQL, jobs e procedures','MySQL e Reporting Services','Apresentação de comitês para clientes']},
- {id:'tro',org:'Tróchia',role:'Planejamento Estratégico',s:2016.08,e:2016.67,period:'fev/2016 – set/2016',loc:'São Paulo',pts:['Relatórios de BI e extração via SQL','Coordenação de equipe e relação com assessorias parceiras','Régua de cobrança e estratégias operacionais']},
- {id:'rb',org:'R Brasil Soluções',role:'Operador de Cobrança → Auxiliar → Assistente de MIS',s:2013.58,e:2016.08,period:'ago/2013 – fev/2016 · 2 anos 7 meses',loc:'São Paulo',pts:['Início na operação de cobrança de cartões','Migração para MIS: indicadores, SQL Server e QlikView','Onde a carreira em dados começou']},
- {id:'uni',org:'Uninove',role:'Formação acadêmica',s:2015,e:2018.95,cls:'edu',period:'2015 – 2018',loc:'São Paulo',pts:['Universidade Nove de Julho']}
+ {id:'octa',org:'Octadesk',role:'Analista de RevOps & CSOps Sênior',s:2026.33,e:null,cls:'now',period:'mai/2026 – atual',loc:'São Paulo · Grupo LWSA',
+  cargos:[{c:'Analista de RevOps & CSOps Sênior',p:'mai/2026 – atual'}],
+  funcoes:['Revenue Operations e CS Ops para os times comercial e de Customer Success','Gestão do funil comercial integrando HubSpot e a plataforma de atendimento','Análises de churn, uso da plataforma e saúde da carteira de clientes','Desde ago/2026, atuação como BizOps, conectando as áreas em torno da receita','Participação na estruturação do time de dados, que está sendo montado do zero'],
+  entregas:['Master: central de alertas de funil em tempo real (lead sem resposta, negócio parado, SLA perto de vencer), construída com a parceira CPlug','Painel ao vivo e acompanhamento de meta por equipe, com um agente de IA que tira dúvidas e recebe sugestões','Stack da Master: APIs do HubSpot e da Octadesk, Airflow no Kubernetes, MongoDB, FastAPI e React'],
+  posts:[
+   {d:'2026-11-09',id:'7525528870096392192',t:'Nosso funil agora avisa onde agir, na hora',s:'Como a gestão do funil deixou de depender de relatório e passou a funcionar com alertas em tempo real.'},
+   {d:'2026-09-22',id:'7508134811354566657',t:'Por que os clientes estão saindo?',s:'Nem todo churn deixa sinal nos dados: às vezes é perda de valor percebido. Sobre First Value e o papel do CS Ops.'},
+   {d:'2026-09-07',id:'7502697365540356096',t:'RevOps é suficiente?',s:'Por que empresas deveriam pensar em RevOps + CS Ops: construir a operação que dá ao cliente motivos para ficar.'},
+   {d:'2026-08-17',id:'7495108102959300608',t:'#OctaDoFuturo',s:'Encontro presencial da Octadesk e a mudança do time: de RevOps para BizOps.'},
+   {d:'2026-07-31',id:'7488926707165380608',t:'Você não reduz churn de uma hora para outra',s:'Antes de health score e automação vem o diagnóstico: entender os comportamentos que antecedem o churn na sua empresa.'}
+  ]},
+ {id:'jera',org:'Jera Capital',role:'Analista de Dados Sênior · RevOps, Automação e Marketing',s:2025.58,e:2026.33,period:'ago/2025 – mai/2026 · 9 meses',loc:'São Paulo · Híbrido',
+  cargos:[{c:'Analista de Dados Sênior · RevOps, Automação e Marketing',p:'ago/2025 – mai/2026'}],
+  funcoes:['Consultas SQL no Databricks para relatórios de performance operacional e inteligência comercial','Dashboards na HEX e apresentações executivas para a diretoria','Manutenção do funil no HubSpot, boas práticas de CRM e cadência comercial','Automações no CRM e no n8n para preencher campos, mudar status, avançar o funil e registrar tarefas','Apoio ao marketing: fotografia, vídeo e edição'],
+  entregas:['Duas plataformas feitas com vibe coding que dispensaram Power BI e Tableau, entre elas um portal central de dashboards com permissão por usuário','Sistema de cadastro de leads sem duplicidade, com aprovação de RevOps nos casos duvidosos','Radar de notícias de prospecção no n8n, com sinais de compra ligados ao ICP','Banco de dados reorganizado','Instagram de 120 para 500 seguidores, criação de canal no YouTube e de um podcast'],
+  posts:[
+   {d:'2026-05-12',id:'7459935412308918272',t:'Encerrando a trajetória na Jera',s:'Balanço de 9 meses de intraempreendedorismo: automações, duas soluções em vibe coding, conteúdo e audiência.'},
+   {d:'2026-05-11',id:'7459573036321587201',t:'Criar relatório virou commodity',s:'Com IA, qualquer pessoa monta um dashboard. O valor do analista passa a ser dado correto, modelagem e contexto de negócio.'},
+   {d:'2026-06-08',id:'7469719924937232386',t:'Estudo, planejamento, código. Nessa ordem.',s:'O processo usado para construir sistemas com IA: pesquisa no chat, requisitos num .md e só depois o código.'}
+  ]},
+ {id:'tv',org:'TáVindo.AI',role:'Founder · projeto próprio',s:2025,e:2025.95,cls:'side',period:'jan/2025 – dez/2025',loc:'Remoto · build in public',
+  cargos:[{c:'Founder',p:'jan/2025 – dez/2025'}],
+  funcoes:['Criação de um agente no WhatsApp com informação em tempo real do transporte público de São Paulo','Orquestração dos fluxos no n8n e integração com WhatsApp (Evolution API), Google Maps e SPTrans','Testes de LLMs (Grok, Gemini e GPT-4 mini) para interpretar os pedidos dos usuários'],
+  entregas:['Modelo matemático próprio para estimar a chegada do ônibus, calibrado diariamente com deslocamentos reais','Landing page e painel administrativo com usuários, cobrança e reengajamento','50+ usuários ativos e 300 buscas em 3 meses de MVP'],
+  posts:[
+   {d:'2026-11-16',id:'7528064781694623744',t:'A caixa-preta do TáVindo.AI',s:'Como o agente funcionava por dentro, o desafio de calcular a chegada e os três motivos pelos quais o projeto não evoluiu.'},
+   {d:'2026-05-26',id:'7465008871435227136',t:'Dados ruins mataram meu produto',s:'A qualidade de um produto tem um teto definido pela qualidade dos dados na base dele.'},
+   {d:'2026-06-15',id:'7472256695055024128',t:'Eu matei mais ideias do que executei',s:'Sobre validar cedo demais e não matar uma ideia antes de dar a ela uma chance.'}
+  ]},
+ {id:'omie',org:'Omie',role:'Especialista em Dados · RevOps & CSOps',s:2021.67,e:2025.5,period:'set/2021 – jul/2025 · ~4 anos',loc:'São Paulo · Híbrido',
+  cargos:[{c:'Especialista em Dados · RevOps & CSOps',p:'set/2022 – jul/2025'},{c:'Especialista em Dados · RevOps & Serviços Bancários',p:'set/2021 – ago/2022'}],
+  funcoes:['Dashboards estratégicos e análises para Customer Success','Estudos de adoção, retenção, usabilidade do produto, precificação e correlação com churn','Em Serviços Bancários: indicadores de saldo, transações, boletos e desconto de duplicatas, e segmentação da base para campanhas de upsell'],
+  entregas:['Redução de ~50% no churn com estratégias baseadas em análise: renovação antecipada antes do fim de cupons e teto de reajuste anual avisado com antecedência no produto','Health Score para monitorar a saúde do cliente em tempo real','Estudos de First Value para acelerar a percepção de valor do produto','Automação de consultas SQL e governança de dados no Power BI (+12 h/mês economizadas)','Indicadores de serviços financeiros criados do zero e modelagem da base','Option Holder, programa Acelera Líderes e 7x destaque por valores (2022–2024)'],
+  posts:[
+   {d:'2026-07-13',id:'7482403734233178113',t:'Reduzi o churn em quase 50%. Não foi sorte.',s:'As perguntas que guiaram os estudos e as ações que saíram deles: renovação antecipada e teto de reajuste.'},
+   {d:'2026-06-11',id:'7470807437151948802',t:'O cliente silencioso é o mais caro',s:'Health score zerado em clientes que pagavam em dia: por que inatividade no SaaS é sinal de risco.'},
+   {d:'2026-08-31',id:'7500160582776684544',t:'Modelo preditivo de churn: carroça na frente dos bois?',s:'A IA escreve o modelo em segundos, mas não entende sozinha por que seus clientes cancelam.'},
+   {d:'2026-07-23',id:'7486031230489149440',t:'De Especialista para Analista Sênior',s:'Por que carreira não é uma sequência linear de cargos: acumular competência, não títulos.'}
+  ]},
+ {id:'neo',org:'Neobpo',role:'Analista de BI e MIS Sênior · Planejamento Sênior',s:2019.42,e:2021.67,period:'jun/2019 – ago/2021 · 2 anos 3 meses',loc:'São Paulo',
+  cargos:[{c:'Analista de BI e MIS Sênior',p:'jun/2020 – ago/2021'},{c:'Analista de Planejamento Sênior · conta Santander',p:'jun/2019 – mai/2020'}],
+  funcoes:['Indicadores e KPIs em Power BI para operações de call center','Criação e manutenção de bases em SQL Server e relatórios em Excel','Rotinas em SAS e estudos de bases de clientes e faturamento para a conta do Santander'],
+  entregas:['Painéis de KPIs operacionais em Power BI','Rotinas de atualização em SAS para relatórios de planejamento'],posts:[]},
+ {id:'vik',org:'Vikstar Contact Center',role:'Analista de Indicadores B2B · Customer Success',s:2017.67,e:2019.42,period:'set/2017 – jun/2019 · 1 ano 10 meses',loc:'São Paulo',
+  cargos:[{c:'Analista de Indicadores B2B · Customer Success (conta Telefônica)',p:'set/2017 – jun/2019'}],
+  funcoes:['Indicadores de Customer Success para a operação B2B de telecom','Cruzamento e correção de bases via SQL e relatórios em Excel','Análises de satisfação e de perfil de cliente'],
+  entregas:['Indicadores de CS em Power BI','Queries de análise de satisfação e perfil de cliente'],posts:[]},
+ {id:'dnr',org:'Grupo DNR',role:'Analista de MIS Pleno',s:2016.67,e:2017.67,period:'set/2016 – ago/2017',loc:'São Paulo',
+  cargos:[{c:'Analista de MIS Pleno',p:'set/2016 – ago/2017'}],
+  funcoes:['Relatórios via SQL, jobs e procedures','Manutenção de banco MySQL e indicadores no Reporting Services','Atualização e apresentação de comitês para os clientes'],
+  entregas:['Jobs e procedures automatizando relatórios','Comitês de resultado apresentados aos clientes'],posts:[]},
+ {id:'tro',org:'Tróchia',role:'Planejamento Estratégico',s:2016.08,e:2016.67,period:'fev/2016 – set/2016',loc:'São Paulo',
+  cargos:[{c:'Planejamento Estratégico',p:'fev/2016 – set/2016'}],
+  funcoes:['Relatórios de BI, extração via SQL e apresentações para clientes','Análise de performance de carteira e planejamento das assessorias parceiras','Coordenação de equipe e relacionamento com empresas parceiras'],
+  entregas:['Régua de cobrança e estratégias operacionais','Distribuição de cargas e configuração de sistemas'],posts:[]},
+ {id:'rb',org:'R Brasil Soluções',role:'Operador de Cobrança → Auxiliar → Assistente de MIS',s:2013.58,e:2016.08,period:'ago/2013 – fev/2016 · 2 anos 7 meses',loc:'São Paulo',
+  cargos:[{c:'Assistente de MIS',p:'jun/2015 – fev/2016'},{c:'Auxiliar de MIS',p:'ago/2014 – ago/2015'},{c:'Operador de Cobrança · cartões',p:'ago/2013 – ago/2014'}],
+  funcoes:['Início na operação de cobrança de cartões','Indicadores de cobrança e relatórios operacionais','SQL Server e QlikView'],
+  entregas:['Primeiros relatórios de BI em QlikView','Migração da operação para a área de MIS: onde a carreira em dados começou'],
+  posts:[
+   {d:'2026-10-02',id:'7511783284436271104',t:'“Isso não dá pra fazer.”',s:'O começo de carreira com pouco conhecimento técnico e a troca que mudou tudo: “vou investigar e te retorno”.'}
+  ]},
+ {id:'uni',org:'Uninove',role:'Formação acadêmica',s:2015,e:2018.95,cls:'edu',period:'2015 – 2018',loc:'São Paulo',
+  cargos:[{c:'Universidade Nove de Julho',p:'2015 – 2018'}],funcoes:[],entregas:[],posts:[]}
 ];
 
 /* Certificados [título, emissor · ano] */
@@ -1252,9 +1336,14 @@ const G=SITE.trajetoria;
 const gEl=$('#gantt');const span=Y1-Y0;
 let ticks='';for(let y=Y0;y<=2026;y++)ticks+='<span style="left:'+((y-Y0)/span*100)+'%">'+(y===Y0||y%2===0||y===2026?y:'')+'</span>';
 const grid='background-image:linear-gradient(90deg,color-mix(in srgb,var(--line) 50%,transparent) 1px,transparent 1px);background-size:'+(100/span)+'% 100%';
-gEl.innerHTML='<div class="gaxis"><div></div><div class="ticks">'+ticks+'</div></div>'+G.map(g=>'<div class="grow"><div class="lbl">'+esc(g.org)+'<small>'+esc(g.period.split(' · ')[0])+'</small></div><div class="lane" style="'+grid+'"><button class="gbar '+(g.cls||'')+'" data-g="'+g.id+'" aria-pressed="false" aria-label="'+esc(g.org+': '+g.role)+'" style="left:'+((g.s-Y0)/span*100)+'%;width:'+((g.e-g.s)/span*100)+'%"></button></div></div>').join('');
+gEl.innerHTML='<div class="gaxis"><div></div><div class="ticks">'+ticks+'</div></div>'+G.map(g=>'<div class="grow"><div class="lbl">'+esc(g.org)+(g.posts&&g.posts.length?' <span class="pc" title="posts no LinkedIn">'+g.posts.length+'</span>':'')+'<small>'+esc(g.period.split(' · ')[0])+'</small></div><div class="lane" style="'+grid+'"><button class="gbar '+(g.cls||'')+'" data-g="'+g.id+'" aria-pressed="false" aria-label="'+esc(g.org+': '+g.role)+'" style="left:'+((g.s-Y0)/span*100)+'%;width:'+((g.e-g.s)/span*100)+'%"></button></div></div>').join('');
 function showG(id){const g=G.find(x=>x.id===id);gEl.querySelectorAll('.gbar').forEach(b=>b.setAttribute('aria-pressed',b.dataset.g===id));
-  $('#gdetail').innerHTML='<div><span class="tag">'+esc(g.period)+'</span><h3>'+esc(g.org)+'</h3><p style="margin:6px 0 0">'+esc(g.role)+'</p><p class="muted" style="margin:4px 0 0;font-size:14px">'+esc(g.loc)+'</p></div><ul>'+g.pts.map(p=>'<li>'+esc(p)+'</li>').join('')+'</ul>';}
+  const li=a=>a.map(p=>'<li>'+esc(p)+'</li>').join('');
+  const fmt=d=>{const [y,mo,da]=d.split('-');return da+'/'+mo+'/'+y;};
+  const posts=(g.posts||[]).map(p=>'<a class="post" href="https://www.linkedin.com/feed/update/urn:li:activity:'+p.id+'/" target="_blank" rel="noopener"><span class="pd">'+fmt(p.d)+'</span><b>'+esc(p.t)+'</b><span>'+esc(p.s)+'</span><span class="pl">Ler no LinkedIn →</span></a>').join('');
+  $('#gdetail').innerHTML='<div class="gh"><span class="tag">'+esc(g.period)+'</span><h3>'+esc(g.org)+'</h3><p class="muted" style="margin:4px 0 12px;font-size:14px">'+esc(g.loc)+'</p><ol class="cargos">'+(g.cargos||[]).map(c=>'<li><b>'+esc(c.c)+'</b><span>'+esc(c.p)+'</span></li>').join('')+'</ol></div>'+
+   '<div class="gcols">'+(g.funcoes&&g.funcoes.length?'<div><h4>Funções</h4><ul>'+li(g.funcoes)+'</ul></div>':'')+(g.entregas&&g.entregas.length?'<div><h4>Entregas</h4><ul class="ent">'+li(g.entregas)+'</ul></div>':'')+'</div>'+
+   (posts?'<div class="gposts"><h4>Publiquei sobre isso <small>'+g.posts.length+' post'+(g.posts.length>1?'s':'')+' no LinkedIn</small></h4><div class="plist">'+posts+'</div></div>':'');}
 gEl.addEventListener('click',e=>{const b=e.target.closest('[data-g]');if(b)showG(b.dataset.g);});
 showG('octa');
 
